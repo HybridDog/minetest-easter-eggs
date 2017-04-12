@@ -1,18 +1,13 @@
 --chocolate egg config
 HP_CHANGE = 3		--hp (or sp) healed with a single egg
 
---sugar rush effect config
-SR_ENABLED = true
-SR_DAMAGE = 2		--damage dealt to the player per second during sugar rush
-SR_DURATION = 5		--duration of sugar rush effect in seconds
-SR_SPEEDUP = 3		--speed multiplier of sugar rush effect (1 for normal speed)
+--'sugar overdose' effect config
+SO_ENABLED = true
+SO_DAMAGE = 10		--damage dealt to the player due to 'sugar overdose'
+SO_DURATION = 5		--duration of 'sugar overdose' speedup effect in seconds
+SO_SPEEDUP = 3		--speed multiplier of 'sugar overdose' speedup effect (1 for normal speed)
 
-MAX_SP = 20			--maximum value of sp(aka satiation, hunger); set this to appropriate value of the hunger mod you use
-					--expected behaviour: player encounters sugar rush effect if and only if player's hunger bar is full before using the chocolate egg
-					--supported hunger mods:
-					--	https://github.com/BlockMen/hunger
-					--	https://github.com/tenplus1/hudbars/tree/master/hbhunger		NOT TESTED
-					--if this doesn't work correctly out of the box for you please add support for your hunger mod in get_sp() function
+MAX_SP = 20			--maximum value of sp(aka satiation, hunger)
 
 --golden egg config
 LOOT_SIZE = 4		--maximum number of different item types per egg

@@ -1,0 +1,6 @@
+v. 0.1
+-----------------------
+- Split 'sugar overdose' effect into a two phase process: first the speedup effect takes place and then the damage is dealt.
+- Updated README.md file.
+- Added support for Wuzzy's hbhunger mod.
+- Replaced indexing by entire player table with player's name for so_affected_players[]: possibly slight improvement in memory management.
