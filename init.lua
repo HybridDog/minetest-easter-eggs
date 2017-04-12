@@ -96,7 +96,7 @@ minetest.register_node("easter_eggs:gold_egg", {
 	wield_image = "easter_eggs_gold_egg.png",
 	on_use = function(itemstack, player, pointed_thing)
 		local item
-		minetest.do_item_eat(-5, nil, itemstack, player, pointed_thing)
+		minetest.do_item_eat(0, nil, itemstack, player, pointed_thing)
 		
 		for i = 0, math.random(LOOT_SIZE) do
 			if itemstack:get_free_space() == 0 then
