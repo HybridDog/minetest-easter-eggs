@@ -4,3 +4,7 @@ v. 0.1
 - Updated README.md file.
 - Added support for Wuzzy's hbhunger mod.
 - Replaced indexing by entire player table with player's name for so_affected_players[]: possibly slight improvement in memory management.
+
+v. 0.2
+- Tweaked 'sugar overdose' effect for repeated use.
+- Added feature to spawn eggs randomly nearby players.

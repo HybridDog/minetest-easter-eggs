@@ -44,3 +44,9 @@ loot_pool["default:pine_sapling"]	= 2
 loot_pool["default:sand"]			= 5
 loot_pool["default:desert_sand"]	= 5
 loot_pool["default:silver_sand"]	= 5
+
+--eggs spawn config
+ES_ENABLED = true
+ES_DENSITY = 20		--number of eggs dropped around player
+ES_RADIUS = 50		--area around the player where the eggs drop
+					--please note that statistically most eggs will spawn near ES_RADIUS/2 nodes away from player

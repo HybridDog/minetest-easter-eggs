@@ -31,3 +31,6 @@ the feature completely.
 All soure code, textures and models are licenced with WTFPL (see LICENSE.txt for details).
 
 **Forum topic:** <https://forum.minetest.net/viewtopic.php?f=9&t=17213>
+
+Disclaimer: Function get_sp() is based on rubenwardy's code and licensed
+with WTFPL with the rest of the code with his permission.
