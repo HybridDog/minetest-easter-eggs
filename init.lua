@@ -8,16 +8,16 @@ end
 
 function sugar_overdose(player)
 	local name = player:get_player_name()
-	
+
 	if so_affected_players[name] == nil then
 		player:set_physics_override({ speed = 1 })
 		return
 	end
-	
+
 	player:set_physics_override({ speed = SO_SPEEDUP })
 	minetest.after(1, sugar_overdose, player)
 	so_affected_players[name] = so_affected_players[name] - 1
-	
+
 	if so_affected_players[name] < 1 then
 		so_affected_players[name] = nil
 	end
@@ -25,7 +25,7 @@ end
 
 function get_sp(player)			--get satiation points (hunger) of a player
 	local name = player:get_player_name()
-	
+
 	if minetest.get_modpath("hud") and minetest.global_exists("hud") and hud.hunger then	--BlockMen's hud
 		return tonumber(hud.hunger[name])
 	elseif minetest.get_modpath("hunger") and minetest.global_exists("hunger") and hunger.players then		--BlockMen's hunger
@@ -41,7 +41,7 @@ function get_sp(player)			--get satiation points (hunger) of a player
 			return tonumber(hunger.get_hunger(player))
 		end
 	end
-	
+
 	return 0
 end
 
@@ -51,28 +51,33 @@ minetest.register_craftitem("easter_eggs:chocolate_egg", {
 	on_use = function(itemstack, player, pointed_thing)
 		if SO_ENABLED and get_sp(player) >= MAX_SP then
 			local name = player:get_player_name()
-			
+
 			if so_affected_players[name] == nil then
 				minetest.after(1, sugar_overdose, player)
 			end
-			
+
 			so_affected_players[name] = SO_DURATION
-			
+
 			minetest.after(SO_DURATION, function(player)
 				player:set_hp(player:get_hp() - SO_DAMAGE)
 			end, player)
 		end
-			
+
 		itemstack = minetest.do_item_eat(HP_CHANGE, nil, itemstack, player, pointed_thing)
 		return itemstack
 	end
 })
 
 minetest.register_node("easter_eggs:chocolate_block", {
-	description = "Chocolate block",
-	drawtype = "normal",
-	tiles = { "easter_eggs_chocolate_block.png" },
-	groups = { oddly_breakable_by_hand = 3 }
+	description = "Milk Chocolate block",
+	tiles = {"easter_eggs_chocolate_block.png"},
+	groups = {oddly_breakable_by_hand = 3}
+})
+
+minetest.register_node("easter_eggs:chocolate_block_medium", {
+	description = "Medium Chocolate block",
+	tiles = {"easter_eggs_chocolate_block_medium.png"},
+	groups = {oddly_breakable_by_hand = 3}
 })
 
 minetest.register_craft({
@@ -103,16 +108,16 @@ minetest.register_node("easter_eggs:gold_egg", {
 	on_use = function(itemstack, player, pointed_thing)
 		local item
 		minetest.do_item_eat(0, nil, itemstack, player, pointed_thing)
-		
+
 		for i = 0, math.random(LOOT_SIZE) do
 			if itemstack:get_free_space() == 0 then
 				break
 			end
-			
+
 			item = lp_index[math.random(#lp_index)]
 			player:get_inventory():add_item("main", item .. " " .. math.random(loot_pool[item]))
 		end
-		
+
 		return itemstack
 	end
 })
@@ -135,10 +140,10 @@ function easter_eggs_spawn()
 	local item, pos, pos_r, pos_phi
 	local SQRT_5 = math.sqrt(5)
 	local f
-	
+
 	for _, player in ipairs(minetest.get_connected_players()) do
 		item = "easter_eggs:" .. (math.random(100) == 1 and "gold_egg" or "chocolate_egg")
-		
+
 		pos = player:getpos()
 		pos_r = math.random()												-- 0 <= pos_r <= 1
 		pos_r = (4 * pos_r ^ 3 - 6 * pos_r ^ 2 + 3 * pos_r) * ES_RADIUS		-- pos_r := f(pos_r) = 4 * pos_r ^ 3 - 6 * pos_r ^ 2 + 3 * pos_r
@@ -155,7 +160,7 @@ function easter_eggs_spawn()
 		pos.z = pos.z + pos_r * math.sin(pos_phi)
 		minetest.spawn_item(pos, item)
 	end
-	
+
 	if item_entity_ttl ~= -1 then
 		minetest.after(item_entity_ttl, easter_eggs_spawn)
 	end
