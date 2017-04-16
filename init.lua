@@ -75,6 +75,12 @@ minetest.register_node("easter_eggs:chocolate_block", {
 	groups = { oddly_breakable_by_hand = 3 }
 })
 
+minetest.register_node("easter_eggs:chocolate_block_dark", {
+	description = "Dark Chocolate block",
+	tiles = {"easter_eggs_chocolate_block_dark.png"},
+	groups = {oddly_breakable_by_hand = 3}
+})
+
 minetest.register_craft({
 	output = "easter_eggs:chocolate_block",
 	recipe = {
